@@ -1,7 +1,10 @@
-name = "KIRO2021_parser"
+name = "KIRO2021"
 uuid = "6be99245-6c03-4ba3-bd54-af55faa9f811"
 authors = ["Guillaume Dalle <22795598+gdalle@users.noreply.github.com> and contributors"]
 version = "0.1.0"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 
 [compat]
 julia = "1.6"
