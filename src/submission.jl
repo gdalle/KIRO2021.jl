@@ -15,16 +15,21 @@ function dumb_solver(instance::Instance)
     return solution
 end
 
-function prepare_submission(solver::Function=dumb_solver)
+function prepare_submission(;
+    solver::Function=dumb_solver,
+    instances_folder::String="instances",
+    solutions_folder::String="solutions",
+    group::Int=42,
+)
     names = ["tiny", "small", "medium", "large"]
     total_cost = 0.0
     for name in names
         @info "Solving $name instance"
-        instance = read_instance(joinpath("instances", "KIRO-$name.json"))
+        instance = read_instance(joinpath(instances_folder, "KIRO-$name.json"))
         sol = solver(instance)
         feasible, message = is_feasible(sol, instance)
         if feasible
-            write_solution(sol, joinpath("solutions", "KIRO-$name-sol.json"))
+            write_solution(sol, joinpath(solutions_folder, "KIRO-$name-sol_$group.json"))
             total_cost += cost(sol, instance)
         else
             @warn message
