@@ -15,6 +15,11 @@ function dumb_solver(instance::Instance)
     return solution
 end
 
+"""
+    prepare_submission(solver, instances_folder, solutions_folder, group)
+
+Read instances from the `instance_folder`, use `solver` to generate solutions, and then write these solutions in the `solutions_folder` with the right `group` number.
+"""
 function prepare_submission(;
     solver::Function=dumb_solver,
     instances_folder::String="instances",
