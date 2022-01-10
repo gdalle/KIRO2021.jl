@@ -80,6 +80,7 @@ function read_solution(path::String, instance::Instance)
         prod_center["id"] for prod_center in file["productionCenters"]
     )
     @assert length(unique_prod_ids) == length(file["productionCenters"])
+    @assert all(1 .<= unique_prod_ids .<= S)
     for prod_center in file["productionCenters"]
         s, a = prod_center["id"], prod_center["automation"]
         is_production_center[s] = true
@@ -90,6 +91,7 @@ function read_solution(path::String, instance::Instance)
         dist_center["id"] for dist_center in file["distributionCenters"]
     )
     @assert length(unique_dist_ids) == length(file["distributionCenters"])
+    @assert all(1 .<= unique_dist_ids .<= S)
     for dist_center in file["distributionCenters"]
         s, p = dist_center["id"], dist_center["parent"]
         is_distribution_center[s] = true
@@ -98,6 +100,7 @@ function read_solution(path::String, instance::Instance)
 
     unique_client_ids = Set{Int}(client["id"] for client in file["clients"])
     @assert length(unique_client_ids) == length(file["clients"])
+    @assert all(1 .<= unique_client_ids .<= I)
     for client in file["clients"]
         i, s = client["id"], client["parent"]
         client_parents[i] = s
