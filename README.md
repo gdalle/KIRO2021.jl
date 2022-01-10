@@ -9,7 +9,7 @@ First, you need to install Julia. A complete tutorial can be found on [this page
 ```julia
 julia> using Pkg
 
-julia> Pkg.add("https://github.com/gdalle/KIRO2021.jl")
+julia> Pkg.add(url="https://github.com/gdalle/KIRO2021.jl")
 
 julia> using KIRO2021
 ```
